@@ -1,0 +1,11 @@
+[
+  {
+    "pk": 1,
+    "model":"family.InformacionContacto",
+    "fields":{
+      "direccion":"Samanes, Av. Fco. Orellana",
+      "telefono":"00 (440) 9865 562",
+      "correo":"miFamiliaEC@gmail.com"
+    }
+  }
+]

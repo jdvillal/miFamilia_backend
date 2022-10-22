@@ -1,0 +1,802 @@
+{% load static %}
+<!DOCTYPE html>
+{% with request.user.getPermissions as UserPermissions  %}
+<html lang="es">
+  <head>
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Página sin fines de lucro" />
+    <meta name="author" content="Grupo Family" />
+
+    <title>Family EC</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/galeria.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'css/simditor.css' %}" rel="stylesheet" />
+
+    <link
+      href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body id="page-top">
+    <!-- <div class="container2">
+	  <h5>Cargando</h5>
+	  <svg class="loader2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340">
+		  <circle cx="170" cy="170" r="160" stroke="#4e73df"/>
+		  <circle cx="170" cy="170" r="135" stroke="#a8abb1"/>
+		  <circle cx="170" cy="170" r="110" stroke="#4e73df"/>
+		  <circle cx="170" cy="170" r="85" stroke="#a8abb1"/>
+	  </svg>
+  </div> -->
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href=""
+        >
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">
+            Mi Familia
+            <sup>EC</sup>
+          </div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Panel de control</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Heading -->
+        <div class="sidebar-heading">Opciones</div>
+        {% if UserPermissions.PUBLICACIONES.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTemas"
+            aria-expanded="true"
+            aria-controls="collapseTemas"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Temas</span>
+          </a>
+          <div
+            id="collapseTemas"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Temas:</h6>
+              {% if UserPermissions.PUBLICACIONES.CREAR %}
+              <a class="collapse-item" href="{% url 'registrar_tema' %}">
+                Registrar tema
+              </a>
+              {% endif %} 
+              {% if UserPermissions.PUBLICACIONES.VER or UserPermissions.PUBLICACIONES.EDITAR or UserPermissions.PUBLICACIONES.APROBAR %}
+              <a class="collapse-item" href="{% url 'modificar_tema' %}">
+                Modificar tema
+              </a>
+              {% endif %} 
+              {% if UserPermissions.PUBLICACIONES.ELIMINAR %}
+              <a class="collapse-item" href="{% url 'eliminar_tema' %}">
+                Eliminar tema
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %} 
+        {% if UserPermissions.TIPS.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTips"
+            aria-expanded="true"
+            aria-controls="collapseTips"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Tips</span>
+          </a>
+          <div
+            id="collapseTips"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Tips:</h6>
+              {% if UserPermissions.TIPS.CREAR %}
+              <a class="collapse-item" href="{% url 'registrar_tips' %}">
+                Registrar tips
+              </a>
+              {% endif %} 
+              {% if UserPermissions.TIPS.VER or UserPermissions.TIPS.EDITAR or UserPermissions.TIPS.APROBAR %}
+              <a class="collapse-item" href="{% url 'modificar_tips' %}">
+                Modificar tips
+              </a>
+              {% endif %}
+              {% if UserPermissions.TIPS.ELIMINAR %}
+              <a class="collapse-item" href="{% url 'eliminar_tips' %}">
+                Eliminar tips
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseNosotros"
+            aria-expanded="true"
+            aria-controls="collapseNosotros"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Nosotros</span>
+          </a>
+          <div
+            id="collapseNosotros"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Nosotros:</h6>
+              <a class="collapse-item" href="{% url 'registrar_nosotros' %}">
+                Registrar nosotros
+              </a>
+              <a class="collapse-item" href="{% url 'modificar_nosotros' %}">
+                Modificar nosotros
+              </a>
+              <a class="collapse-item" href="{% url 'eliminarNosotros' %}">
+                Eliminar nosotros
+              </a>
+            </div>
+          </div>
+        </li>
+
+        {% if UserPermissions.GALERIA.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseUtilities"
+            aria-expanded="true"
+            aria-controls="collapseUtilities"
+          >
+            <i class="fas fa-images"></i>
+            <span>Galería</span>
+          </a>
+          <div
+            id="collapseUtilities"
+            class="collapse"
+            aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Multimedia:</h6>
+              {% if UserPermissions.GALERIA.CREAR %}
+              <a class="collapse-item" href="{% url 'galeria' %}">
+                Subir multimedia
+              </a>
+              {% endif %} 
+              {% if UserPermissions.GALERIA.VER or UserPermissions.GALERIA.EDITAR or               UserPermissions.GALERIA.ELIMINAR %}
+              <a class="collapse-item" href="{% url 'gestionar_galeria' %}">
+                Gestionar multimedia
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %} 
+        {% if UserPermissions.CONSEJERIAS.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseConsejerias"
+            aria-expanded="true"
+            aria-controls="collapseUtilities"
+          >
+            <i class="fas fa-calendar-check"></i>
+            <span>Consejerias</span>
+          </a>
+          <div
+            id="collapseConsejerias"
+            class="collapse"
+            aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Consejerias:</h6>
+              {% if UserPermissions.CONSEJERIAS.CREAR %}
+              <a class="collapse-item" href="{% url 'registrar_consejeria' %}">
+                Registrar consejeria
+              </a>
+              {% endif %} {% if UserPermissions.CONSEJERIAS.VER or UserPermissions.CONSEJERIAS.EDITAR or               UserPermissions.CONSEJERIAS.ELIMINAR %}
+              <a class="collapse-item" href="{% url 'modificarConsejeria' %}">
+                Gestionar consejeria
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %} 
+        {% if UserPermissions.TESTIMONIOS.ANY %}
+        <li class="nav-item"></li>
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTestimonio"
+            aria-expanded="true"
+            aria-controls="collapseTestimonio"
+          >
+            <i class="fas fa-comment-alt"></i>
+            <span>Testimonios</span>
+          </a>
+          <div
+            id="collapseTestimonio"
+            class="collapse"
+            aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Testimonios:</h6>
+              {% if UserPermissions.TESTIMONIOS.VER or UserPermissions.TESTIMONIOS.EDITAR or               UserPermissions.TESTIMONIOS.ELIMINAR %}
+              <a class="collapse-item" href="{% url 'eliminarTestimonio' %}">
+                Gestionar testimonios
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        {% if UserPermissions.CONTACTANOS.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseContactanos"
+            aria-expanded="true"
+            aria-controls="collapseContactanos"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Contactanos</span>
+          </a>
+          <div
+            id="collapseContactanos"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Gestionar:</h6>
+              {% if UserPermissions.CONTACTANOS.VER or UserPermissions.CONTACTANOS.EDITAR%}
+              <a class="collapse-item" href="{% url 'InformacionContacto' %}">
+                Gestionar
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTwoPolitcs"
+            aria-expanded="true"
+            aria-controls="collapseTwoPolitcs"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Gestionar Políticas</span>
+          </a>
+          <div
+            id="collapseTwoPolitcs"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Gestionar:</h6>
+              <a class="collapse-item" href="{% url 'politicas_view' %}">
+                Políticas & Privacidad
+              </a>
+            </div>
+          </div>
+        </li>
+
+        {% if UserPermissions.ROLES.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseRoles"
+            aria-expanded="true"
+            aria-controls="collapseRoles"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Roles</span>
+          </a>
+          <div
+            id="collapseRoles"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Roles:</h6>
+              {% if UserPermissions.ROLES.VER or UserPermissions.ROLES.EDITAR %}
+              <a class="collapse-item" href="{% url 'roles' %}">Editar</a>
+              {% endif %} 
+              {% if UserPermissions.ROLES.CREAR %}
+              <a class="collapse-item" href="{% url 'crear_rol' %}">Crear</a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %} 
+        {% if UserPermissions.USUARIOS.ANY %}
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseUsuarios"
+            aria-expanded="true"
+            aria-controls="collapseUsuarios"
+          >
+            <i class="fas fa-edit"></i>
+            <span>Usuarios</span>
+          </a>
+          <div
+            id="collapseUsuarios"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Usuarios:</h6>
+              {% if UserPermissions.USUARIOS.CREAR %}
+              <a class="collapse-item" href="{% url 'crear_usuario' %}">
+                Crear Usuario
+              </a>
+              {% endif %} {% if UserPermissions.USUARIOS.VER or UserPermissions.USUARIOS.EDITAR %}
+              <a class="collapse-item" href="{% url 'gestionar_usuarios' %}">
+                Gestionar Usuarios
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!--{% if request.user.tipo == 'C' %} {% endif %}-->
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+          >
+            <!-- Sidebar Toggle (Topbar) -->
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Topbar Search -->
+            <form
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+            >
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control bg-light border-0 small"
+                  placeholder="Search for..."
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control bg-light border-0 small"
+                        placeholder="Search for..."
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+
+              <!-- Nav Item - Alerts -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-bell fa-fw"></i>
+                  <!-- Counter - Alerts -->
+                  <span class="badge badge-danger badge-counter"></span>
+                </a>
+                <!-- Dropdown - Alerts -->
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <h6 class="dropdown-header">Alerts Center</h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 12, 2019</div>
+                      <span class="font-weight-bold">
+                        A new monthly report is ready to download!
+                      </span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-success">
+                        <i class="fas fa-donate text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 7, 2019</div>
+                      $290.29 has been deposited into your account!
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-warning">
+                        <i class="fas fa-exclamation-triangle text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 2, 2019</div>
+                      Spending Alert: We've noticed unusually high spending for
+                      your account.
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >
+                    Show All Alerts
+                  </a>
+                </div>
+              </li>
+
+              <!-- Nav Item - Messages -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="messagesDropdown"
+                  href="{% url 'buzon_entrada' %}"
+                >
+                  <i class="fas fa-envelope fa-fw"></i>
+                  <!-- Counter - Messages -->
+                  <span class="badge badge-danger badge-counter"></span>
+                </a>
+                <!-- Dropdown - Messages -->
+                <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                  Message Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div class="font-weight-bold">
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                    <div class="status-indicator"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                    <div class="status-indicator bg-warning"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="">Read More Messages</a>
+              </div> -->
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    {{request.user.username}}
+                  </span>
+                  <img
+                    class="img-profile rounded-circle"
+                    src="media/{{request.user.foto}}"
+                  />
+                </a>
+                <!-- Dropdown - User Information -->
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="{% url 'perfil'  %}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Perfil
+                  </a>
+                  <a class="dropdown-item" href="{% url 'configuracion' %}">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Configuraciones
+                  </a>
+                  <!-- <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a> -->
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">{% block content %} {% endblock %}</div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Your Website 2020</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Listo para salir?
+            </h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Selecciona "Cerrar sesión" para regresar al login.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-primary" href="{% url 'logout' %}">
+              Cerrar sesión
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static   'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static   'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static   'js/demo/datatables-demo.js' %}"></script>
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+    <script src="{% static 'js/onlydigits.js' %}"></script>
+    <script src="{% static 'js/btn-enviar.js' %}"></script>
+
+    <script src="{% static 'js/module.js' %}"></script>
+    <script src="{% static 'js/hotkeys.js' %}"></script>
+    <script src="{% static 'js/uploader.js' %}"></script>
+    <script src="{% static 'js/simditor.js' %}"></script>
+    <script src="{% static 'js/roles/index.js' %}"></script>
+    <script src="{% static 'js/roles/crear.js' %}"></script>
+    <script src="{% static 'js/perfil/perfil.js' %}"></script>
+    <script src="{% static 'js/perfil/password.js' %}"></script>
+    <script src="{% static 'js/usuario/index.js' %}"></script>
+    <script src="{% static 'js/usuario/gestionar.js' %}"></script>
+    <script src="{% static 'js/galeria/imagenes.js' %}"></script>
+    <script src="{% static 'js/galeria/actualizar.js' %}"></script>
+    <script src="{% static 'js/galeria/eliminar.js' %}"></script>
+    <script src="{% static 'js/galeria/text_area.js' %}"></script>
+  </body>
+</html>
+{% endwith %}

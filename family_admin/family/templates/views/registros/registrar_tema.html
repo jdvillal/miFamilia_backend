@@ -1,0 +1,153 @@
+{% extends "views/index.html" %}
+{% block content %}
+<!-- Page Heading -->
+<!-- Card Para el manejo de registros exitosos o registros fallado -->
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == "success" %}
+      <div class="card mb-4 py-3 border-left-success message">
+              <div class="card-body ">
+                {{ message }}<a class="del-msg">&times;</a> 
+          </div>
+    </div>
+    {% else %}
+      <div class="card mb-4 py-3 border-left-danger message">
+          <div class="card-body ">
+                {{ message }}<a class="del-msg">&times;</a> 
+          </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="card">
+  <!-- <div class="card-header"><strong>Basic Form</strong> Elements
+      <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div> -->
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Registrar Tema</h6>
+  </div>
+  <div class="card-body">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="select1">Categoria del tema</label>
+        <div class="col-md-9">
+          <select class="form-control" id="select1" name="categoria" required>
+            <option selected value="0">Seleccione la categoria</option>
+            {% for categoria in categorias %}
+            <option value="{{categoria.nombre_categoria}}">{{categoria.nombre_categoria}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Titulo </label>
+        <div class="col-md-9">
+          <input class="form-control" id="text-input" type="text" name="titulo" placeholder="Titulo del tema" required>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="datepicker">Fecha</label>
+        <div class="col-md-9">
+          <input class="form-control" id="datepicker" type="date" name="fecha" placeholder="date" required>
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="textarea-input">Descripción</label>
+        <div class="col-md-9">
+          <textarea id="editor" name="descripcion"  autofocus></textarea>
+        </div>
+      </div>
+      {% if UserPermissions.PUBLICACIONES.APROBAR %}
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="estado">Estado del tema</label>
+        <div class="col-md-9">
+          <select class="form-control" id="select1" name="estado" required>
+            <option value="0">Seleccione el estado del tema</option>
+            <option value="1">Aprobado</option>
+            <option value="2" selected >Pendiente</option>
+
+          </select>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="file-input">Seleccione la imagen</label>
+        <div class="col-md-9">
+          <input id="file-input" type="file" name="file-input">
+        </div>
+      </div> -->
+      <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+          aria-expanded="true" aria-controls="collapseCardExample">
+          <h6 class="m-0 font-weight-bold text-primary">Subir Imagenes, Audio o Contenido Multimedia</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="collapseCardExample" >
+          <div class="card-body">
+
+            <strong>Subir Imagenes</strong> 
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="imagen1"><strong> Seleccione la imagen 1</strong></label>
+              <div class="col-md-9">
+                <input id="file-input" type="file" name="imagen1" accept="image/*" required>
+              </div>
+            </div> 
+            
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="imagen2"><strong> Seleccione la imagen 2</strong></label>
+              <div class="col-md-9">
+                <input id="file-input" type="file" name="imagen2" accept="image/*" required>
+              </div>
+            </div>
+
+            <strong>Subir Video</strong> 
+            <!-- <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="video"><strong> Seleccione el video</strong></label>
+              <div class="col-md-9">
+                <input id="file-input" type="file" name="video" accept="video/*" >
+              </div>
+            </div> -->
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="video"><strong>Slecciones el url del video</strong></label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input" type="text" name="url_video" placeholder="url del video" required>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+        <div>
+          <div class="card-footer">
+            <button class="btn btn-success btn-icon-split" type="submit" id="regTem">
+              <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+              </span>
+              <span class="text">Registrar</span>
+            </button>
+            <button class="btn  btn-danger btn-icon-split" type="reset">
+              <span class="icon text-white-50">
+                <i class="fas fa-trash"></i>
+              </span>
+              <span class="text">Desechar </span>
+            </button>
+
+          </div>
+        </div>
+    </form>
+  </div>
+  
+</div>
+
+
+{% endblock  %}

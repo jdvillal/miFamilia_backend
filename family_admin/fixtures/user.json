@@ -1,0 +1,29 @@
+[
+  {
+    "model": "family.userprofile",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$W5Ys2UiyCBIvXkvh88wx1n$+5oV4T5JuJMphzQ0pNe54Jh/ciYLdVjac7QWpF/PomQ=",
+      "last_login": "2022-08-30T03:05:33.804Z",
+      "is_superuser": false,
+      "username": "mifamiliaAdmin",
+      "first_name": "FAMILIA",
+      "last_name": "ADMINISTRADOR",
+      "email": "familias.unidasec@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-30T00:28:58.968Z",
+      "tipo": "E",
+      "sexo": "OTROS",
+      "foto": "image/profile.png",
+      "cedula": "9999999999",
+      "telefono": "9999999999",
+      "fecha_nacimiento": "2022-08-01",
+      "estado": 0,
+      "activo": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+
+]

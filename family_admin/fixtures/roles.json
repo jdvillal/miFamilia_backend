@@ -1,0 +1,26 @@
+[
+  {
+    "model": "family.Rol",
+    "pk": 1,
+    "fields": {
+      "nombre": "ADMINISTRADOR",
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol",
+    "pk": 2,
+    "fields": {
+      "nombre": "EDITOR",
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol",
+    "pk": 3,
+    "fields": {
+      "nombre": "CONSEJERO",
+      "estado": 1
+    }
+  }
+]

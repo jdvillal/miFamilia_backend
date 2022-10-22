@@ -1,0 +1,30 @@
+[
+    {
+        "fields": {
+            "nombre_categoria": "Problemas entre esposos"
+        },
+        "model": "family.categoria_tema",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "nombre_categoria": "Educacion de los hijos"
+        },
+        "model": "family.categoria_tema",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "nombre_categoria": "Vida plena"
+        },
+        "model": "family.categoria_tema",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "nombre_categoria": "Alimentacion/Nutricion"
+        },
+        "model": "family.categoria_tema",
+        "pk": 4
+    }
+]

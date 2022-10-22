@@ -1,0 +1,182 @@
+{% extends "views/index.html" %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == "success" %}
+<div class="card mb-4 py-3 border-left-success message">
+    <div class="card-body ">
+        {{ message }}<a class="del-msg">&times;</a>
+    </div>
+</div>
+{% else %}
+<div class="card mb-4 py-3 border-left-danger message">
+    <div class="card-body ">
+        <span> {{ message }}</span><a class="del-msg">&times;</a>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+<div class="card mb-4">
+    <div class="card-header">
+
+        <i class="fas fa-table mr-1"></i>
+        <span class="m-0 font-weight-bold text-primary">Testimonios recibidos</span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Testimonios</th>
+                        <th>Estado</th>
+                        <th>ID</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Testimonios</th>
+                        <th>Estado</th>
+                        <th>ID</th>
+                        <th>Opciones</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for testimonio in testimonios%}
+                    <tr>
+                        <td>{{testimonio.fecha}}</td>
+                        <td>{{testimonio.titulo}}</td>
+                        {% if testimonio.estado == 1%}
+                        <td>Aprobado</td>
+                        {% else %}
+                        <td>Pendiente</td>
+                        {% endif %}
+                        <td>{{testimonio.id}}</td>
+                        <td>
+                          {% if UserPermissions.TESTIMONIOS.EDITAR or UserPermissions.TESTIMONIOS.APROBAR %}
+                            <button class="btn btn-success btn-circle btn-sm " type="button"  data-titulo="{{testimonio.titulo}}"
+                            data-mensaje="{{testimonio.descripcion}}" data-id="{{testimonio.id}}"
+                                href="" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            {% endif %}
+                            {% if UserPermissions.TESTIMONIOS.ELIMINAR %}
+                            <button class="btn btn-danger btn-circle btn-sm " type="button" data-testimonio="{{testimonio.id}}"
+                                href="" data-toggle="modal" data-target="#ConfirmModal">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Estas seguro de querer eliminar?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="{% url 'eliminar_testimonio_p' %}" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    Elige la opcion que deseas realizar.
+                        {% csrf_token %}
+                        <input type="hidden" id="testimonio" name="testimonio">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit" >Si, eliminalo</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Visualización del testimonio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>        
+        <div class="modal-body">
+          <form action="{% url 'response_testimonio' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Tiulo:</label>
+                <input type="text" disabled class="form-control" id="titulo" name="titulo" required>
+                <input type="hidden" class="form-control" id="id_testimonio" name="id_testimonio" required>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 col-form-label" for="estado">Estado del tema</label>
+                <div class="col-md-12">
+                  <select class="form-control" id="select1" name="estado" required>
+                    <option value="0" disabled>Seleccione el estado del tema</option>
+                    <option value="1" >Aprobado</option>
+                    <option value="0" selected>Pendiente</option>
+        
+                  </select>
+                </div>
+              </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Mensaje:</label>
+              <textarea class="form-control" disabled  rows="5" id="mensaje" name="mensaje" required></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button  type="submit" class="btn btn-primary">Guardar</button required>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('#ConfirmModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var testimonio_modal = button.data('testimonio')
+                var modal = $(this)
+                modal.find('.modal-body #testimonio').val(testimonio_modal);
+            });
+
+            $('#exampleModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var titulo_modal = button.data('titulo')
+                var mensaje_modal = button.data('mensaje')
+                var id_testimonio = button.data('id')
+
+                var modal = $(this)
+                modal.find('.modal-body #titulo').val(titulo_modal);
+                modal.find('.modal-body #mensaje').val(mensaje_modal);
+                modal.find('.modal-body #id_testimonio').val(id_testimonio);
+
+
+            });
+        });
+ 
+</script>
+{% endblock  %}

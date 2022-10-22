@@ -1,0 +1,72 @@
+[
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 1,
+        "fields": {
+            "nombre": "GALERIA"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 2,
+        "fields": {
+            "nombre": "PUBLICACIONES"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 3,
+        "fields": {
+            "nombre": "USUARIOS"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 4,
+        "fields": {
+            "nombre": "CONSEJERIAS"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 5,
+        "fields": {
+            "nombre": "TIPS"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 6,
+        "fields": {
+            "nombre": "NOTIFICACIONES"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 7,
+        "fields": {
+            "nombre": "TESTIMONIOS"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 8,
+        "fields": {
+            "nombre": "CONTACTANOS"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 9,
+        "fields": {
+            "nombre": "EVENTOS"
+        }
+    },
+    {
+        "model": "family.Grupo_Permiso",
+        "pk": 10,
+        "fields": {
+            "nombre": "ROLES"
+        }
+    }
+]

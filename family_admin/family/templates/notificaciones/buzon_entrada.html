@@ -1,0 +1,195 @@
+{% extends "views/index.html" %}
+{% block content %}
+
+
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button"
+      aria-expanded="true" aria-controls="collapseCardExample2">
+      <h6 class="m-0 font-weight-bold text-primary">Buzón de entrada</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="collapseCardExample2" >
+      <div class="card-body">
+        <div class="container-fluid">
+          
+        
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    <strong>Buzón</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Asunto</th>
+                                    <th>Mensaje</th>
+                                    <th>Usuario</th>
+                                    <th>Correo</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Asunto</th>
+                                    <th>Mensaje</th>
+                                    <th>Usuario</th>
+                                    <th>Correo</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for b in buzon%}
+                                <tr>
+                                    <td>{{b.fecha}}</td>
+                                    <td>{{b.titulo}}</td>                            
+                                    <td>{{b.descripcion}}</td>
+                                    <td>{{b.usuario}}</td>
+                                    <td>{{b.correo}}</td>
+
+                                    <td>
+                                        <button class="btn btn-danger btn-circle btn-sm " type="button" data-id="{{b.id}}"
+                                        href="" data-toggle="modal" data-target="#ConfirmModalBuzon">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        <button class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-asunto="{{b.titulo}}" data-msg="{{b.descripcion}}" data-target="#modalVisualizar">
+                                            <i class="fas fa-eye"></i>                 
+                                                             
+                                        </button>
+                                        <button  class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-whatever="{{b.correo}}" data-target="#exampleModal">
+                                            <i class="fas fa-paper-plane"></i>    
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}                                                                                              
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalVisualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Previsualizar Mensaje</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Asunto:</label>
+              <input type="text" class="form-control" id="asunto" disabled>
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Mensaje:</label>
+              <textarea class="form-control"  rows="5" id="mensaje" readonly></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enviar mensaje</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'response_contact' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Enviar a:</label>
+              <input type="text" class="form-control" id="correo" name="correo" required>
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Mensaje:</label>
+              <textarea class="form-control"  rows="5" id="message-text" name="msg" required></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button  type="submit" class="btn btn-primary">Enviar</button required>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ConfirmModalBuzon" tabindex="-1" role="dialog" aria-labelledby="ConfirmModalBuzon" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Estas seguro de querer eliminar?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="{% url 'eliminar_mensaje' %}" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    Elige la opcion que deseas realizar.
+                        {% csrf_token %}
+                        <input type="hidden" id="msg_id" name="id_mensaje">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit" >Si, eliminalo</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+  <script type="text/javascript">4
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('#modalVisualizar').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var mensaje = button.data('msg') 
+        var asunto = button.data('asunto') 
+
+        var modal = $(this)
+        modal.find('.modal-title').text('Detalles del mensaje ')
+        modal.find('.modal-body #asunto').val(asunto)
+        modal.find('.modal-body #mensaje').val(mensaje)
+
+     })
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('whatever')
+        
+        var modal = $(this)
+        modal.find('.modal-title').text('Mensaje a ' + recipient)
+        modal.find('.modal-body #correo').val(recipient)
+    })
+        $('#ConfirmModalBuzon').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var id_ = button.data('id')
+
+            var modal = $(this)
+
+            modal.find('.modal-body #msg_id').val(id_);
+        });
+    });
+
+</script>
+{% endblock  %}

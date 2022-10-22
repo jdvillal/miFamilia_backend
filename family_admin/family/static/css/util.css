@@ -1,0 +1,3 @@
+div#hover_img a#previs { position:relative; }
+div#hover_img a#previs span#spn { position:absolute; display:none; z-index:99; }
+div#hover_img a#previs:hover span#spn { display:block; }

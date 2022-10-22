@@ -1,0 +1,12 @@
+[
+  {
+    "model": "family.empleado_rol",
+    "pk": 15,
+    "fields": {
+      "usuario": 1,
+      "rol": 1,
+      "estado": 1
+    }
+  }
+]
+

@@ -1,0 +1,154 @@
+{% extends "views/index.html" %}
+{% block content %}
+<div id="response-message">
+
+</div>
+<div>
+
+
+
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Crear Rol</h6>
+            {% csrf_token %}
+            <!--<div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Opciones:</div>
+          <a class="dropdown-item"  id="addimg" href="#">Agregar más imágenes</a>
+          <a class="dropdown-item" id="addvideo" href="#">Agregar más videos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#"></a>
+        </div>
+      </div>-->
+        </div>
+        <!-- Card Body -->
+            <div class="card shadow mb-4 border-bottom-info">
+
+                <!-- Card Header - Accordion -->
+                
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapse">
+
+                    <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <div class="card-body ">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="text-input-nombre-rol">Nombre del Rol
+                                </label>
+                                <div class="col-md-9">
+                                    <input required class="form-control" id="text-input-nombre-rol" type="text"
+                                        name="nombre_rol">
+                                </div>
+                            </div>
+                            <table class="table" id="table" data-url={% url 'cambiar_permisos' %}>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"> </th>
+
+                                        {% for permiso in permisos%}
+                                        <th scope="col">{{permiso.nombre}}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for categoria in categorias %}
+                                    <tr>
+                                        <th scope="row">{{ categoria.nombre }}</th>
+                                        {% for permiso in permisos %}
+                                        <td><input type="checkbox"
+                                                name="{{categoria.nombre}}-{{permiso.nombre}}"></input>
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-success btn-icon-split" data-toggle="modal"
+                                data-target="#exampleModal_{{rol}}">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="text">Guardar</span>
+                            </button>
+                        </div>
+
+                        <div class="modal fade" id="exampleModal_{{rol}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel_{{rol}}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel_{{rol}}">Advertencia</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Desea Guardar los cambios?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button type='submit' class="btn btn-primary btn-enviar">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+      
+    {% if modal == True %}
+    <div
+      class="modal fade"
+      id="exampleModal_rol_mensaje"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel_rol_mensaje"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel_rol_mensaje">
+              Mensaje
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="mess_rol">{{mess}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    </div>
+
+
+</div>
+
+{% endblock %}

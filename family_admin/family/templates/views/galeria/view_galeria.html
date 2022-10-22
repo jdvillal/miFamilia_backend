@@ -1,0 +1,334 @@
+{% extends "views/index.html" %} {% block content %}
+
+<div
+  class="card mb-4 py-3 border-left-success message"
+  id="succ"
+  style="display: none"
+>
+  <div class="card-body">Guardado Exitoso<a class="del-msg">&times;</a></div>
+</div>
+<div
+  class="card mb-4 py-3 border-left-danger message"
+  id="error"
+  style="display: none"
+>
+  <div class="card-body">
+    <span>Error en el guardado</span><a class="del-msg">&times;</a>
+  </div>
+</div>
+
+<div class="card shadow mb-4">
+  <!-- Card Header - Dropdown -->
+  <div
+    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+  >
+    <h6 class="m-0 font-weight-bold text-primary">Contenido Multimedia</h6>
+    {% csrf_token %}
+    <!--<div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Opciones:</div>
+          <a class="dropdown-item"  id="addimg" href="#">Agregar más imágenes</a>
+          <a class="dropdown-item" id="addvideo" href="#">Agregar más videos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#"></a>
+        </div>
+      </div>-->
+  </div>
+  <!-- Card Body -->
+  <div class="card-body">
+    <div class="card shadow mb-4 border-bottom-info">
+      <!-- Card Header - Accordion -->
+      <a
+        href="#collapseCardExample"
+        class="d-block card-header py-3"
+        data-toggle="collapse"
+        role="button"
+        aria-expanded="true"
+        aria-controls="collapseCardExample"
+      >
+        <h6 class="m-0 font-weight-bold text-primary">Subir Imágenes</h6>
+      </a>
+      <!-- Card Content - Collapse -->
+      <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        <div class="collapse" id="collapseCardExample">
+          <div class="card-body">
+            {% csrf_token %}
+
+            <div class="container">
+              <div class="form-group row justify-content-center" id="image">
+                <label class="col-md-6 col-form-label" for="titulo"
+                  ><strong> Titulo de la imagen: </strong></label
+                >
+                <div class="col-md-6">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="titulo"
+                    id="titulo"
+                    maxlength="90"
+                    required
+                  />
+                </div>
+                <label class="col-md-12 col-form-label" for="descripcion"
+                  ><strong> Descripcion de la imagen: </strong></label
+                >
+                <div class="col-md-12">
+                  <textarea
+                    class="form-control text-area-galeria"
+                    name="descripcion"
+                    id="descripcion"
+                    maxlength="490"
+                    cols="30"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                <label class="col-md-12 col-form-label" for="descripcion"
+                  ><strong> Seleccione imagen: </strong></label
+                >
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="imagen"
+                    >Imagen:</label
+                  >
+                  <div class="col-md-9">
+                    <input
+                      class="form-control"
+                      id="imagen"
+                      type="file"
+                      name="imagen"
+                      accept="image/*"
+                      required
+                    />
+                    <!-- <span class="help-block">Please enter a valid date</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button
+              class="btn btn-success btn-icon-split"
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModal_imagenes"
+            >
+              <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+              </span>
+              <span class="text">Guardar</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="modal fade"
+          id="exampleModal_imagenes"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel_imagenes"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel_imagenes">
+                  Advertencia
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Desea Guardar los cambios?</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary btn-enviar">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="card shadow mb-4 border-bottom-info">
+      <!-- Card Header - Accordion -->
+      <a
+        href="#collapseCardExample2"
+        class="d-block card-header py-3"
+        data-toggle="collapse"
+        role="button"
+        aria-expanded="true"
+        aria-controls="collapseCardExample2"
+      >
+        <h6 class="m-0 font-weight-bold text-primary">Subir Videos</h6>
+      </a>
+      <!-- Card Content - Collapse -->
+      <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        <div class="collapse" id="collapseCardExample2">
+          <div class="card-body">
+            {% csrf_token %}
+
+            <div class="container">
+              <div class="form-group row justify-content-center" id="image">
+                <label class="col-md-6 col-form-label" for="titulo"
+                  ><strong> Titulo del video: </strong></label
+                >
+                <div class="col-md-6">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="titulo"
+                    id="titulo"
+                    maxlength="100"
+                    required
+                  />
+                </div>
+                <label class="col-md-12 col-form-label" for="descripcion"
+                  ><strong> Descripcion del video: </strong></label
+                >
+                <div class="col-md-12">
+                  <textarea
+                    class="form-control text-area-galeria"
+                    name="descripcion"
+                    id="descripcion"
+                    cols="30"
+                    rows="5"
+                    maxlength="500"
+                    required
+                  ></textarea>
+                </div>
+
+                <label class="col-md-12 col-form-label" for="descripcion"
+                  ><strong> Seleccione video: </strong></label
+                >
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="video"
+                    >Imagen:</label
+                  >
+                  <div class="col-md-9">
+                    <input
+                      class="form-control"
+                      id="video"
+                      type="file"
+                      name="video"
+                      accept="video/*"
+                      required
+                    />
+                    <!-- <span class="help-block">Please enter a valid date</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button
+              class="btn btn-success btn-icon-split"
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModal_videos"
+            >
+              <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+              </span>
+              <span class="text">Guardar</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="modal fade"
+          id="exampleModal_videos"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel_videos"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel_videos">
+                  Advertencia
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Desea Guardar los cambios?</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary btn-enviar">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% if modal == True %}
+    <div
+      class="modal fade"
+      id="exampleModal_imagen_mensaje"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel_imagen_mensaje"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel_imagen_mensaje">
+              Mensaje
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="mess_imagen">{{mess}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

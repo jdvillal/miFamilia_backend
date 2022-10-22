@@ -1,0 +1,243 @@
+{% extends "views/index.html" %}
+{% block content %}
+
+<div>
+
+
+
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+            {% csrf_token %}
+
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            {% for usuario, dict_roles_permisos in empleados_rol.items %}
+            {% if usuario != request.user %}
+            <div class="card shadow mb-4 border-bottom-info" id = "tarjeta-{{usuario}}">
+
+                <!-- Card Header - Accordion -->
+                <a href="#collapse_{{usuario}}" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                    aria-expanded="true" aria-controls="collapse_{{usuario}}">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h6 class="m-0 font-weight-bold text-primary">{{usuario}}</h6>
+                      {% if UserPermissions.USUARIOS.ELIMINAR %}
+                      <button class="btn btn-danger btn-circle btn-sm btn-eliminar-usuario" 
+                              type="button" 
+                              data-toggle="modal" 
+                              data-target="#modal_eliminar_{{usuario}}"
+                              data-usuario="{{usuario}}"
+                              {% comment %} {% if rol == 'ADMINISTRADOR' %}disabled {% endif %} {% endcomment %}
+                              >
+                          <i class="fas fa-trash"></i>
+                      </button>
+                      {% endif %}
+                    </div>
+                </a>
+                <!-- Card Content - Collapse -->
+                <form class="form-horizontal" method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="collapse" id="collapse_{{usuario}}">
+                        <div class="card-body ">
+                            {% csrf_token %}
+
+                            <div class="table-responsive">
+                                <table class="table" id="{{usuario}}_table" data-url={% url 'cambiar_permisos' %}>
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col"> </th>
+
+                                            {% for rol in dict_roles_permisos.keys %}
+                                            <th scope="col">{{rol}}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"> </th>
+                                            {% for rol, value in dict_roles_permisos.items %}
+                                            {% if value == True %}
+                                            <td><input name="{{rol}}" value="{{usuario}}" type="checkbox" checked {% if not UserPermissions.USUARIOS.EDITAR %}disabled{% endif %}></input></td>
+                                            {% else %}
+                                            <td><input name="{{rol}}" value="{{usuario}}" type="checkbox" {% if not UserPermissions.USUARIOS.EDITAR %}disabled{% endif %}></input></td>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        {% if UserPermissions.USUARIOS.EDITAR %}
+                        <div class="card-footer">
+                            {% if rol == 'ADMINISTRADOR' %}
+                            <button class="btn btn-success btn-icon-split" disabled>
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="text">Guardar</span>
+                            </button>
+                            {% else %}
+                            <button class="btn btn-success btn-icon-split" data-toggle="modal"
+                                data-target="#exampleModal_{{usuario}}" type="button">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="text">Guardar</span>
+                            </button>
+                            {% endif %}
+
+
+                            <div class="modal fade" id="exampleModal_{{usuario}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel_{{usuario}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel_{{usuario}}">Advertencia</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desea Guardar los cambios?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary btn-enviar" >Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="exampleModal_{{usuario}}_mensaje" tabindex="-1"
+                                aria-labelledby="exampleModalLabel_{{usuario}}_mensaje" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel_{{usuario}}_mensaje">Mensaje
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="mess_{{usuario}}"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modal_eliminar_{{usuario}}" tabindex="-1"
+                                aria-labelledby="modalLabel_eliminar_{{usuario}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalLabel_eliminar_{{usuario}}">Advertencia</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>Desea eliminar el usuario: "{{usuario}}"?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary btn-send-eliminar-usuario" data-dismiss="modal" data-usuario="{{usuario}}" data-eliminarurl="{% url 'eliminar_usuario' usuario.pk %}" >Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+    <div
+      class="modal fade"
+      id="modalEliminarUsuarioMensaje"
+      tabindex="-1"
+      aria-labelledby="modalLabelEliminarUsuario"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabelEliminarUsuario">
+              Mensaje
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="mess_eliminar_usuario">{{mess}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if modal == True %}
+    <div
+      class="modal fade"
+      id="exampleModal_usuario_rol_mensaje"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel_usuario_rol_mensaje"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel_usuario_rol_mensaje">
+              Mensaje
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="mess_usuario">{{mess}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+
+
+{% endblock %}

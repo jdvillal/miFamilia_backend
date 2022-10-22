@@ -1,0 +1,52 @@
+{% extends "views/index.html" %} {% block content %}
+
+<div class="card">
+  <div class="card-body">
+    <div class="text-center mb-4">
+      <img 
+         src="media/{{user.foto}}" 
+        class="rounded-circle" 
+        width="200"
+        height="200"
+        style="object-fit:cover;"
+        alt="Foto de pefil">
+    </div>
+    {% csrf_token %}
+
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Nombres :</div >
+      <div class="col-md-5"> <div class="form-control" >{{ user.first_name}} </div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Apellidos:</div >
+      <div class="col-md-5"> <div class="form-control" >{{ user.last_name }}</div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Usuario (alias):</div>
+      <div class="col-md-5"> <div class="form-control" >{{user.username}}</div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Correo:</div>
+      <div class="col-md-5"> <div class="form-control" >{{user.email}}</div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Fecha de nacimiento:</div>
+      <div class="col-md-5"> <div class="form-control" >{{user.fecha_nacimiento}}</div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Cédula:</div>
+      <div class="col-md-5"> <div class="form-control" >{{user.cedula}}</div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Télefono:</div>
+      <div class="col-md-5"> <div class="form-control" >{{user.telefono}}</div> </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-md-3 col-form-label" >Sexo</div>
+      <div class="col-md-5"> <div class="form-control" >{{user.sexo}}</div> </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

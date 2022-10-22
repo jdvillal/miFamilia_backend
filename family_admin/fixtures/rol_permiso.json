@@ -1,0 +1,582 @@
+[
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 1,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 1,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 2,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 1,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 3,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 1,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 4,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 1,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 5,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 1,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 6,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 2,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 7,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 2,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 8,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 2,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 9,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 2,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 10,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 2,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 11,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 3,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 12,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 3,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 13,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 3,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 14,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 3,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 15,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 3,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 16,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 4,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 17,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 4,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 18,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 4,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 19,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 4,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 20,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 4,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 21,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 5,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 22,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 5,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 23,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 5,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 24,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 5,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 25,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 5,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 26,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 6,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 27,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 6,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 28,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 6,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 29,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 6,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 30,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 6,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 31,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 7,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 32,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 7,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 33,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 7,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 34,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 7,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 35,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 7,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 36,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 8,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 37,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 8,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 38,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 8,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 39,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 8,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 40,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 8,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 41,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 9,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 42,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 9,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 43,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 9,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 44,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 9,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 45,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 9,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 46,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 10,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 47,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 10,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 48,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 10,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 49,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 10,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.Rol_Permiso",
+    "pk": 50,
+    "fields": {
+      "id_rol": 1,
+      "id_grupo_permiso": 10,
+      "id_permiso": 5,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 51,
+    "fields": {
+      "id_rol": 2,
+      "id_grupo_permiso": 2,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 52,
+    "fields": {
+      "id_rol": 2,
+      "id_grupo_permiso": 2,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 53,
+    "fields": {
+      "id_rol": 2,
+      "id_grupo_permiso": 2,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 54,
+    "fields": {
+      "id_rol": 2,
+      "id_grupo_permiso": 2,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 55,
+    "fields": {
+      "id_rol": 3,
+      "id_grupo_permiso": 4,
+      "id_permiso": 1,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 56,
+    "fields": {
+      "id_rol": 3,
+      "id_grupo_permiso": 4,
+      "id_permiso": 2,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 57,
+    "fields": {
+      "id_rol": 3,
+      "id_grupo_permiso": 4,
+      "id_permiso": 3,
+      "estado": 1
+    }
+  },
+  {
+    "model": "family.rol_permiso",
+    "pk": 58,
+    "fields": {
+      "id_rol": 3,
+      "id_grupo_permiso": 4,
+      "id_permiso": 4,
+      "estado": 1
+    }
+  }
+]

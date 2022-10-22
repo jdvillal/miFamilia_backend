@@ -1,0 +1,182 @@
+[
+  {
+    "fields": {
+      "descripcion": "<p><span style=\"color: rgb(32, 33, 36);\">El&nbsp;</span><b style=\"color: rgb(32, 33, 36);\">rezo</b><span style=\"color: rgb(32, 33, 36);\">&nbsp;nos convoca desde el principio de los tiempos y nos invita a elevar la mirada para preguntarnos por el sentido, por la trascendencia. Sin importar la creencia que se practique, es tiempo de conectar con algo m\u00e1s grande que nosotros de la mano de la oraci\u00f3n.</span><br></p>",
+      "estado": 1,
+      "fecha": "2020-12-20",
+      "image": "image/rezar.jpg",
+      "titulo": "Reza todas las noches",
+      "usuario": "leomk"
+    },
+    "model": "family.tips",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "descripcion": "<p><span style=\"color: rgb(0, 0, 0);\">Ayudar a tus amigos a superar problemas puede ser un tema delicado porque no querr\u00e1s que piensen que tu intenci\u00f3n es sermonearlos o juzgarlos. Aunque cada situaci\u00f3n es diferente, un punto clave que debes recordar es que tu ejemplo es importante. Al defender tus normas otros lo notar\u00e1n, y t\u00fa podr\u00e1s ser una influencia positiva.<b><i> Por ejemplo</i></b>, si tus amigos usan un lenguaje profano, aseg\u00farate de usar siempre un lenguaje limpio, lo cual incluye chistes y comentarios sanos. De esa manera, ellos tendr\u00e1n un gran ejemplo de que e</span><br></p>",
+      "estado": 0,
+      "fecha": "2020-12-23",
+      "image": "image/friend_zpfIcR1.jpg",
+      "titulo": "Ayudar a tus amigos",
+      "usuario": "leomk"
+    },
+    "model": "family.tips",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descripcion": "<h3>Cuanto m\u00e1s trabajo, m\u00e1s suerte parezco tener (Thomas Jefferson)</h3>",
+      "estado": 1,
+      "fecha": "2021-01-12",
+      "image": "image/Thomas_Jefferson.jpg",
+      "titulo": "EL TRABAJO Y LA SUERTE",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descripcion": "<p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"\">La corona del anciano son sus nietos;</span><span style=\"\"><br>el orgullo de los hijos son sus padres.</span></p><p style=\"margin-left: 15pt;\"><b><a href=\"https://dailyverses.net/es/proverbios/17/6\"><span style=\"color: rgb(51, 102, 153);\">Proverbios17:6</span></a><a href=\"https://dailyverses.net/es/ninos\"><span style=\"color: white;\">ni\u00f1os</span></a></b></p>",
+      "estado": 1,
+      "fecha": "2021-02-03",
+      "image": "image/fOTO_FAMILIA_CON_ABUELOS.jpg",
+      "titulo": "LA FAMILIA",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "descripcion": "<p style=\"margin-left: 0cm;\">\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"\">Hay amigos que llevan a la ruina,</span><span style=\"\"><br>y hay amigos m\u00e1s fieles que un hermano.</span></p><p><b><a href=\"https://dailyverses.net/es/proverbios/18/24\"><span style=\"color: rgb(51, 102, 153);\">Proverbios18:24</span></a><a href=\"https://dailyverses.net/es/amistad\"><span style=\"color: white;\">amistad</span></a></b></p>",
+      "estado": 1,
+      "fecha": "2021-02-03",
+      "image": "image/Foto_amigos.jpg",
+      "titulo": "Amigos",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descripcion": "<p style=\"margin-left: 0cm;\">\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"\">El hijo sabio es la alegr\u00eda de su padre;</span><span style=\"\"><br>el hijo necio es el pesar de su madre.</span></p><p><b><a href=\"https://dailyverses.net/es/proverbios/10/1\"><span style=\"color: rgb(51, 102, 153);\">Proverbios 10:1</span></a><a href=\"https://dailyverses.net/es/alegria\"><span style=\"color: white;\">alegr\u00eda</span></a><a href=\"https://dailyverses.net/es/sabiduria\"><span style=\"color: white;\">sabidur\u00eda</span></a><a href=\"https://dailyverses.net/es/dolor\"><span style=\"color: white;\">dolor</span></a></b></p>",
+      "estado": 1,
+      "fecha": "2021-02-03",
+      "image": "image/Foto_hijo_y_padre.jpg",
+      "titulo": "HIJOS",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "descripcion": "<p style=\"\">\u00b7&nbsp; &nbsp; &nbsp; &nbsp;</p><p>\u00b7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><span style=\"\">Instruye al ni\u00f1o en el camino correcto,</span><span style=\"\"><br>y aun en su vejez no lo abandonar\u00e1.</span></b></p><p style=\"margin-left: 15pt;\"><b><a href=\"https://dailyverses.net/es/proverbios/22/6\"><span style=\"color: rgb(51, 102, 153);\">Proverbios22:6</span></a><a href=\"https://dailyverses.net/es/justicia\"><span style=\"color: white;\">justicia</span></a><a href=\"https://dailyverses.net/es/ninos\"><span style=\"color: white;\">ni\u00f1os</span></a></b></p>",
+      "estado": 1,
+      "fecha": "2021-02-08",
+      "image": "image/Educar_a_ni\u00f1os.jpg",
+      "titulo": "EDUCAR DESDE NI\u00d1OS",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "descripcion": "<p>Estudia el pasado si quieres intuir el futuro (Confucio)</p>",
+      "estado": 1,
+      "fecha": "2021-02-15",
+      "image": "image/Foto_de_historia.jpg",
+      "titulo": "CONOCER LA HISTORIA ES IMPORTANTE",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "descripcion": "<ul> <li><b>Un hombre inteligente jam\u00e1s se irritar\u00eda si tuviera     delante siempre un espejo y se viera cuando discute (An\u00f3nimo)</b></li></ul>",
+      "estado": 1,
+      "fecha": "2021-02-22",
+      "image": "image/paciencia_foto.jpg",
+      "titulo": "LA VIRTUD DE LA PACIENCIA",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "descripcion": "<p><b><span style=\"color: black;\">&nbsp;</span></b></p><p><b><span style=\"color: black;\">La sonrisa cuesta menos que la electricidad y da m\u00e1s luz </span></b><b><span style=\"color: black;\">(Proverbio escoc\u00e9s)</span></b></p><p><b><span style=\"color: black;\">&nbsp;</span></b></p><p><b><span style=\"color: black;\">Foto tomadade:&lt;ahref=\"<a href=\"https://www.freepik.es/fotos/personas\" rel=\"nofollow\">https://www.freepik.es/fotos/personas</a>\"&gt;Foto de Personas creado por senivpetro - <a href=\"http://www.freepik\" rel=\"nofollow\">www.freepik</a></span></b></p>",
+      "estado": 1,
+      "fecha": "2021-03-08",
+      "image": "image/Pareja_sonriente_AXXeRxg.jpg",
+      "titulo": "SONREIR ES BUENO",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "descripcion": "<p><b><span style=\"color: black;\">A veces sentimos que lo que hacemos es tan solo una gota en el mar, pero el mar ser\u00eda mucho menos si le faltara una gota (Madre Teresa de Calcuta)</span></b><br></p>",
+      "estado": 1,
+      "fecha": "2021-03-22",
+      "image": "image/descarga_YyDhZD8.jpg",
+      "titulo": "TODA AYUDA ES VALIOSA",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "descripcion": "<p><b><span style=\"color: black;\">La sonrisa cuesta menos que la electricidad y da m\u00e1s luz (Proverbio escoc\u00e9s</span><span style=\"color: black;\">)</span></b><br></p>",
+      "estado": 1,
+      "fecha": "2021-05-10",
+      "image": "image/Imagen_de_sonreir.jpg",
+      "titulo": "SONREIR ES BUENO",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "descripcion": "<ul> <li><b>&nbsp;La sonrisa cuesta menos que la electricidad y da     m\u00e1s luz (Proverbio escoc\u00e9s)</b></li></ul>",
+      "estado": 1,
+      "fecha": "2021-07-12",
+      "image": "image/Pareja_sonriente_98BQ9G9.jpg",
+      "titulo": "SONREIR ES BUENO",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "descripcion": "<p>Si quieres algo que nunca tuviste, debes hacer algo     que nunca hiciste (An\u00f3nimo)</p>",
+      "estado": 1,
+      "fecha": "2021-11-03",
+      "image": "image/Innovar.png",
+      "titulo": "Innovar",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "descripcion": "<p>Sin estudiar enferma el alma (S\u00e9neca)<br></p>",
+      "estado": 1,
+      "fecha": "2022-01-28",
+      "image": "image/seneca-6279972_1280_JJbUH5s.png",
+      "titulo": "Es bueno estudiar",
+      "usuario": "Jhonny_Andino"
+    },
+    "model": "family.tips",
+    "pk": 22
+  }
+]

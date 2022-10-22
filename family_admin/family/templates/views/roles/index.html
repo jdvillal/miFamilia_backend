@@ -1,0 +1,201 @@
+{% extends "views/index.html" %}
+{% block content %}
+<div id="response-message">
+
+</div>
+<div>
+
+
+
+  <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
+      {% csrf_token %}
+      <!--<div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Opciones:</div>
+          <a class="dropdown-item"  id="addimg" href="#">Agregar más imágenes</a>
+          <a class="dropdown-item" id="addvideo" href="#">Agregar más videos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#"></a>
+        </div>
+      </div>-->
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+      {% for rol, categorias in rol_permiso.items %}
+      <div id="{{rol}}_tag" class="card shadow mb-4 border-bottom-info">
+
+        <!-- Card Header - Accordion -->
+        <a href="#collapse_{{rol}}" class="d-block card-header py-3 " data-toggle="collapse" role="button"
+          aria-expanded="true" aria-controls="collapse_{{rol}}">
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary ">{{rol}}</h6>
+            {% if UserPermissions.ROLES.ELIMINAR %}
+            <button class="btn btn-danger btn-circle btn-sm btn-eliminar-rol" 
+                    type="button" 
+                    data-toggle="modal" 
+                    data-target="#modal_eliminar_{{rol}}"
+                    data-rol = "{{rol}}"
+                    {% if rol == 'ADMINISTRADOR' %}disabled {% endif %}
+                    >
+                <i class="fas fa-trash"></i>
+            </button>
+            {% endif %}
+          </div>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse" id="collapse_{{rol}}">
+          <div class="card-body ">
+            {% csrf_token %}
+
+            <div class="container">
+            <div class="table-responsive">
+              <table class="table" id="{{rol}}_table" 
+                data-saveUrl={% url 'cambiar_permisos' %} 
+                data-deleteUrl={% url 'eliminar_rol' %}>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"> </th>
+
+                  {% for permiso in permisos%}
+                  <th scope="col">{{permiso.nombre}}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for categoria, lista in categorias.items %}
+                <tr>
+                  <th scope="row">{{ categoria }}</th>
+                  {% for permiso in permisos %}
+                    <td>
+                      <input 
+                        type="checkbox" 
+                        {% if permiso.nombre in lista  %}checked {% endif %}
+                        {% if rol == 'ADMINISTRADOR'  or not UserPermissions.ROLES.EDITAR %}disabled{% endif %} >
+                      </input>
+                    </td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+            </div>
+          </div>
+
+          </div>
+          {% if UserPermissions.ROLES.EDITAR %}
+          <div class="card-footer">
+            <button 
+              class="btn btn-success btn-icon-split" 
+              {% if rol == 'ADMINISTRADOR' %}
+              disabled 
+              {% else %} 
+              data-toggle="modal" data-target= "#exampleModal_{{rol}}"
+              {% endif %} >
+              <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+              </span>
+              <span class="text">Guardar</span>
+            </button>
+          </div>
+          {% endif %}
+
+          <div class="modal fade" id="modal_eliminar_{{rol}}" tabindex="-1" aria-labelledby="modalLabel_eliminar_{{rol}}"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel_eliminar_{{rol}}">Advertencia</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Desea eliminar rol "{{rol}}"</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    onclick="handleDelete('{{rol}}')" >Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="exampleModal_{{rol}}" tabindex="-1" aria-labelledby="exampleModalLabel_{{rol}}"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel_{{rol}}">Advertencia</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Desea Guardar los cambios?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    onclick="handleSubmit('{{rol}}')">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="exampleModal_{{rol}}_mensaje" tabindex="-1"
+            aria-labelledby="exampleModalLabel_{{rol}}_mensaje" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel_{{rol}}_mensaje">Mensaje</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p id="mess_{{rol}}"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+      <div class="modal fade" id="exampleModal_eliminado" tabindex="-1"
+        aria-labelledby="exampleModalLabel_eliminado" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel_eliminado">Mensaje</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p id="mess_eliminado"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

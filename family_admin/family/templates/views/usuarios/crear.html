@@ -1,0 +1,252 @@
+{% extends "views/index.html" %} {% block content %}
+
+<div class="card">
+  <!-- <div class="card-header"><strong>Basic Form</strong> Elements
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+      </div> -->
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Crear Usuario</h6>
+  </div>
+  <div class="card-body">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="nombre_usuario"
+          >Nombres Usuario</label
+        >
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="nombre_usuario"
+            type="text"
+            name="nombre_usuario"
+            placeholder="nombre de usuario"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="apellidos_usuario"
+          >Apellidos Usuario</label
+        >
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="apellidos_usuario"
+            type="text"
+            name="apellidos_usuario"
+            placeholder="apellidos de usuario"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="usuario"
+          >Usuario (alias):
+        </label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="usuario"
+            type="text"
+            name="usuario"
+            placeholder="usuario"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="correo">correo:</label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="correo"
+            type="email"
+            name="correo"
+            required
+          />
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="fecha_nacimiento"
+          >Fecha de nacimiento:</label
+        >
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="fecha_nacimiento"
+            type="date"
+            name="fecha_nacimiento"
+            placeholder="date"
+            required
+          />
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="cedula">Cedula:</label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="cedula"
+            type="text"
+            maxlength="10"
+            name="cedula"
+            required
+          />
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="telefono">Telefono:</label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="telefono"
+            type="text"
+            maxlength="10"
+            name="telefono"
+            required
+          />
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="sexo">Sexo:</label>
+        <div class="col-md-9">
+          <select class="form-control" id="sexo" name="sexo" required>
+            <option value="" disabled selected>Seleccionar sexo</option>
+            <option value="HOMBRE">Hombre</option>
+            <option value="MUJER">Mujer</option>
+            <option value="OTROS">Me identifico con otro genero</option>
+          </select>
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="foto">foto:</label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            id="foto"
+            type="file"
+            name="foto"
+            accept="image/*"
+          />
+          <!-- <span class="help-block">Please enter a valid date</span> -->
+        </div>
+      </div>
+
+      <div>
+        <div class="card-footer">
+          <button
+            type="button"
+            class="btn btn-success btn-icon-split"
+            id="regTem"
+            class="btn btn-success btn-icon-split"
+            data-toggle="modal"
+            data-target="#exampleModal_usuario"
+          >
+            <span class="icon text-white-50">
+              <i class="fas fa-check"></i>
+            </span>
+            <span class="text">Crear</span>
+          </button>
+          <button class="btn btn-danger btn-icon-split" type="reset">
+            <span class="icon text-white-50">
+              <i class="fas fa-trash"></i>
+            </span>
+            <span class="text">Desechar</span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="exampleModal_usuario"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel_usuario"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel_usuario">
+                Advertencia
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Desea Guardar los cambios?</p>
+            </div>
+            <div class="modal-footer ">
+              <button
+                type="button"
+                class="btn btn-secondary "
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary btn-enviar">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    {% if modal == True %}
+    <div
+      class="modal fade"
+      id="exampleModal_usuario_mensaje"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel_usuario_mensaje"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel_usuario_mensaje">
+              Mensaje
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="mess_usuario">{{mess}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
